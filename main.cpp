@@ -119,6 +119,7 @@ int *restore_array(int &n){
 int main(){
 
     int gozine,n,*array;
+    bool inserted = false;
     cout << "pay attention:\nyou should define array first or had saved array in save section before use 2+ choices:\n";
     cout << "enter your choice:\n";
     cout << "1.input array\n";
@@ -137,45 +138,77 @@ int main(){
 
         if(gozine == 1){
             array = input_array(array , n);
+            inserted = true;
             cout << "your array is:\n";
             display_array(array , n);
             cout << "\narray is ready for use ;)\n";
 
         }else if(gozine == 2){
+            if(!inserted){
+                cout << "array not found!return to main menu and restore or insert an array!";
+            }else{
+                array = insert_into_array(array,n);
+                cout << "new array is:\n";
+                display_array(array , n);
+                cout << "\nnew array is ready for use ;)\n";
+                
+            }
+            cout << endl;
             
-            array = insert_into_array(array,n);
-            cout << "new array is:\n";
-            display_array(array , n);
-            cout << "\nnew array is ready for use ;)\n";
+            
 
         }else if(gozine == 3){
-
-            array = delete_element(array,n);
-            cout << "new array is:\n";
-            display_array(array,n);
-            cout << "\narray is ready for use ;)\n";
+            if(!inserted){
+                cout << "array not found!return to main menu and restore or insert an array!";
+            }else{
+                array = delete_element(array,n);
+                cout << "new array is:\n";
+                display_array(array,n);
+                cout << "\narray is ready for use ;)\n";
+            }
+            cout << endl;
+            
 
 
         }else if(gozine == 4){
-            selection_sort(array , n);
-            cout << "sorted array = \n";
-            display_array(array , n);
-            cout << "\narray is ready for use ;)\n";
+            if(!inserted){
+                cout << "array not found!return to main menu and restore or insert an array!";
+            }else{
+                selection_sort(array , n);
+                cout << "sorted array = \n";
+                display_array(array , n);
+                cout << "\narray is ready for use ;)\n";
+            }
+            cout << endl;
+            
 
         
             
         }else if(gozine == 5){
-            cout << "your array is:\n";
-            display_array(array , n);
+            if(!inserted){
+                cout << "array not found!return to main menu and restore or insert an array!";
+            }else{
+                cout << "your array is:\n";
+                display_array(array , n);
+                cout << endl;
+            }
             cout << endl;
             
+            
         }else if(gozine == 6){
-            save_array(array , n);
-            cout << "array successfully saved in array.txt\n";
+            if(!inserted){
+                cout << "array not found!return to main menu and restore or insert an array!";
+            }else{
+                save_array(array , n);
+                cout << "array successfully saved in array.txt\n";
+            }
+            cout << endl;
+            
         }else if(gozine == 7){
             array = restore_array(n);
+            inserted = true;
             cout << "array successfully restored from array.txt\n";
-
+            
         }else if(gozine == 0){
             break;
         }else{
