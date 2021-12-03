@@ -4,6 +4,87 @@
 #include <conio.h>
 using namespace std;
 
+void input_array(int *array,int n){
+
+
+    for(int i = 0;i<n;i++){
+        printf("enter array[%d]: ",i);
+        cin >> array[i];
+    }
+
+}
+void display_array(int *array,int n){
+    for(int i = 0;i<n;i++){
+        cout << array[i] << " ";
+    }
+}
+void insert_into_array(int *array ,int *new_array, int number ,int index , int & n){
+    
+    new_array[index] = number;
+    for(int i = 0;i<n;i++){
+        if(i >= index){
+            new_array[i+1] = array[i];
+
+        }else if(i < index){
+            new_array[i] = array[i];
+        }
+    }
+    n++;
+    
+}
+
+void delete_element(int *array ,int *new_array, int index ,int &n){
+    for(int i = 0;i<n;i++){
+        if(i<index){
+            new_array[i] = array[i];
+        }else{
+            new_array[i] = array[i + 1];
+        }
+    }
+    n--;
+}
+
+
+void selection_sort(int *array,int n){
+    int temp;
+        for(int i = 0;i<n-1;i++){
+            for(int j = i + 1;j<n;j++){
+                if(array[j] < array[i]){
+                    temp = array[j];
+                    array[j] = array[i];
+                    array[i] = temp;
+                    
+                }
+            }
+        }
+}
+
+void save_array(int *array,int n){
+    ofstream myfile;
+    myfile.open("array.txt",ios::out);
+    if(myfile.is_open()){
+        myfile << n << endl;
+        for(int i = 0;i<n;i++){
+            myfile << array[i] << endl;
+        }
+        myfile.close();
+    }
+}
+
+int *restore_array(int &n){
+    int *array;
+    ifstream myfile("array.txt");
+    string line;
+    myfile >> n;
+    int i = 0;
+    array = new int[n];
+    while(getline(myfile,line)){
+        myfile >> array[i++];
+    }
+    return array;
+}
+
+
 
 int main(){
 
@@ -32,15 +113,9 @@ int main(){
                 cin >> n;
             }
             array = new int [n];
-
-            for(int i = 0;i<n;i++){
-                printf("enter array[%d]: ",i);
-                cin >> array[i];
-            }
+            input_array(array , n);
             cout << "your array is:\n";
-            for(int i = 0;i<n;i++){
-                cout << array[i] << " ";
-            }
+            display_array(array , n);
             cout << "\narray is ready for use ;)\n";
 
 
@@ -57,22 +132,11 @@ int main(){
             }
             int *new_array;
             new_array = new int[n + 1];
-            new_array[index] = number;
-            for(int i = 0;i<n;i++){
-                if(i >= index){
-                    new_array[i+1] = array[i];
-
-                }else if(i < index){
-                    new_array[i] = array[i];
-                }
-            }
-            n++;
+            insert_into_array(array,new_array,number,index,n);
             delete[] array;
             array = new_array;
             cout << "new array is:\n";
-            for(int i = 0;i<n;i++){
-                cout << array[i] << " ";
-            }
+            display_array(array , n);
             cout << "\nnew array is ready for use ;)\n";
 
         }else if(gozine == 3){
@@ -84,71 +148,33 @@ int main(){
                 cin >> index;
             }
             new_array = new int[n - 1];
-            for(int i = 0;i<n;i++){
-                if(i<index){
-                    new_array[i] = array[i];
-                }else{
-                    new_array[i] = array[i + 1];
-                }
-            }
-            n--;
+
+            delete_element(array,new_array,index,n);
             delete[] array;
             array = new_array;
             cout << "new array is:\n";
-            for(int i = 0;i<n;i++){
-                cout << array[i] << " ";
-            }
+            display_array(array,n);
             cout << "\narray is ready for use ;)\n";
 
 
         }else if(gozine == 4){
-            int temp;
-            for(int i = 0;i<n-1;i++){
-                for(int j = i + 1;j<n;j++){
-                    if(array[j] < array[i]){
-                        temp = array[j];
-                        array[j] = array[i];
-                        array[i] = temp;
-                        
-                    }
-                }
-            }
+            selection_sort(array , n);
             cout << "sorted array = \n";
-            for(int i = 0;i<n;i++){
-                cout << array[i] << " ";
-            }
+            display_array(array , n);
             cout << "\narray is ready for use ;)\n";
 
         
             
         }else if(gozine == 5){
             cout << "your array is:\n";
-            for(int i = 0;i<n;i++){
-                cout << array[i] << " ";
-            }
+            display_array(array , n);
             cout << endl;
             
         }else if(gozine == 6){
-            ofstream myfile;
-            myfile.open("array.txt",ios::out);
-            if(myfile.is_open()){
-                myfile << n << endl;
-                for(int i = 0;i<n;i++){
-                    myfile << array[i] << endl;
-                }
-                myfile.close();
-            }
+            save_array(array , n);
             cout << "array successfully saved in array.txt\n";
         }else if(gozine == 7){
-            ifstream myfile("array.txt");
-            string line;
-            myfile >> n;
-            int i = 0;
-            delete[] array;
-            array = new int[n];
-            while(getline(myfile,line)){
-                myfile >> array[i++];
-            }
+            array = restore_array(n);
             cout << "array successfully restored from array.txt\n";
 
         }else if(gozine == 0){
