@@ -33,7 +33,7 @@ int main(){
             array = new int [n];
 
             for(int i = 0;i<n;i++){
-                printf("enter array[%d]: ",(i+1));
+                printf("enter array[%d]: ",i);
                 cin >> array[i];
             }
             cout << "your array is:\n";
