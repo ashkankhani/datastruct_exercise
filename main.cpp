@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <fstream>
+#include <conio.h>
 using namespace std;
 
 
@@ -48,8 +49,12 @@ int main(){
             int number,index;
             cout << "enter a number witch you want to insert into array:\n";
             cin >> number;
-            cout << "enter an index for insertion:\n";
+            cout << "enter an index between 0 and "<<n<<" for insertion:\n";
             cin >> index;
+            while(index < 0 || index > n){
+                cout << "enter an index between 0 and "<<n<<" for insertion:\n";
+                cin >> index;
+            }
             int *new_array;
             new_array = new int[n + 1];
             new_array[index] = number;
@@ -72,8 +77,12 @@ int main(){
 
         }else if(gozine == 3){
             int index , * new_array;
-            cout << "enter a index witch you need to be deleted:\n";
+            cout << "enter a index witch you need to be deleted between 0 and "<<n-1<<":\n";
             cin >> index;
+            while(index <0 || index >= n){
+                cout << "enter a index witch you need to be deleted between 0 and "<<n-1<<":\n";
+                cin >> index;
+            }
             new_array = new int[n - 1];
             for(int i = 0;i<n;i++){
                 if(i<index){
@@ -129,6 +138,7 @@ int main(){
                 }
                 myfile.close();
             }
+            cout << "array successfully saved in array.txt\n";
         }else if(gozine == 7){
             ifstream myfile("array.txt");
             string line;
@@ -139,10 +149,12 @@ int main(){
             while(getline(myfile,line)){
                 myfile >> array[i++];
             }
-            
+            cout << "array successfully restored from array.txt\n";
+
         }else if(gozine == 0){
             break;
         }else{
+            cout << "your choice is wrong!\n";
             continue;
         }
 
@@ -154,9 +166,9 @@ int main(){
 
 
         
-        cout << "shoma az menu kharej shodid";
-        cin.get();
-        cin.get();
+        cout << "press any key to exit.";
+        _getch();
+        
     }
 
 
