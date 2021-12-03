@@ -4,13 +4,21 @@
 #include <conio.h>
 using namespace std;
 
-void input_array(int *array,int n){
+int *input_array(int *array,int &n){
 
-
+    cout << "enter the length of array(max = 50):\n";
+    cin >> n;
+    while(n > 50 || n <=0){
+        cout << "enter the length of array(min = 1 & max = 50):\n";
+        cin >> n;
+    }
+    array = new int [n];
     for(int i = 0;i<n;i++){
         printf("enter array[%d]: ",i);
         cin >> array[i];
     }
+
+    return array;
 
 }
 void display_array(int *array,int n){
@@ -18,8 +26,18 @@ void display_array(int *array,int n){
         cout << array[i] << " ";
     }
 }
-void insert_into_array(int *array ,int *new_array, int number ,int index , int & n){
-    
+int *insert_into_array(int *array ,int & n){
+    int number,index;
+    cout << "enter a number witch you want to insert into array:\n";
+    cin >> number;
+    cout << "enter an index between 0 and "<<n<<" for insertion:\n";
+    cin >> index;
+    while(index < 0 || index > n){
+        cout << "enter an index between 0 and "<<n<<" for insertion:\n";
+        cin >> index;
+    }
+    int *new_array;
+    new_array = new int[n + 1];
     new_array[index] = number;
     for(int i = 0;i<n;i++){
         if(i >= index){
@@ -30,10 +48,20 @@ void insert_into_array(int *array ,int *new_array, int number ,int index , int &
         }
     }
     n++;
+    delete[] array;
+    return new_array;
     
 }
 
-void delete_element(int *array ,int *new_array, int index ,int &n){
+int *delete_element(int *array ,int &n){
+    int index , * new_array;
+    cout << "enter a index witch you need to be deleted between 0 and "<<n-1<<":\n";
+    cin >> index;
+    while(index <0 || index >= n){
+        cout << "enter a index witch you need to be deleted between 0 and "<<n-1<<":\n";
+        cin >> index;
+    }
+    new_array = new int[n - 1];
     for(int i = 0;i<n;i++){
         if(i<index){
             new_array[i] = array[i];
@@ -42,6 +70,8 @@ void delete_element(int *array ,int *new_array, int index ,int &n){
         }
     }
     n--;
+    delete[] array;
+    return new_array;
 }
 
 
@@ -106,52 +136,21 @@ int main(){
     while(gozine){
 
         if(gozine == 1){
-            cout << "enter the length of array(max = 50):\n";
-            cin >> n;
-            while(n > 50 || n <=0){
-                cout << "enter the length of array(min = 1 & max = 50):\n";
-                cin >> n;
-            }
-            array = new int [n];
-            input_array(array , n);
+            array = input_array(array , n);
             cout << "your array is:\n";
             display_array(array , n);
             cout << "\narray is ready for use ;)\n";
 
-
-
         }else if(gozine == 2){
-            int number,index;
-            cout << "enter a number witch you want to insert into array:\n";
-            cin >> number;
-            cout << "enter an index between 0 and "<<n<<" for insertion:\n";
-            cin >> index;
-            while(index < 0 || index > n){
-                cout << "enter an index between 0 and "<<n<<" for insertion:\n";
-                cin >> index;
-            }
-            int *new_array;
-            new_array = new int[n + 1];
-            insert_into_array(array,new_array,number,index,n);
-            delete[] array;
-            array = new_array;
+            
+            array = insert_into_array(array,n);
             cout << "new array is:\n";
             display_array(array , n);
             cout << "\nnew array is ready for use ;)\n";
 
         }else if(gozine == 3){
-            int index , * new_array;
-            cout << "enter a index witch you need to be deleted between 0 and "<<n-1<<":\n";
-            cin >> index;
-            while(index <0 || index >= n){
-                cout << "enter a index witch you need to be deleted between 0 and "<<n-1<<":\n";
-                cin >> index;
-            }
-            new_array = new int[n - 1];
 
-            delete_element(array,new_array,index,n);
-            delete[] array;
-            array = new_array;
+            array = delete_element(array,n);
             cout << "new array is:\n";
             display_array(array,n);
             cout << "\narray is ready for use ;)\n";
@@ -189,7 +188,6 @@ int main(){
         cin >> gozine;
         
         }
-
 
         
         cout << "press any key to exit.";
