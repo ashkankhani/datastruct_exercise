@@ -21,6 +21,21 @@ int *input_array(int *array,int &n){
     return array;
 
 }
+
+int linear_search(int *array , int n){
+    int i = 0,number;
+    cout << "enter a number witch you want to find:\n";
+    cin >> number;
+    while(i < n && array[i] != number){
+
+        i++;
+    }
+    if(i == n){
+        return -1;
+    }
+    return i;
+}
+
 void display_array(int *array,int n){
     for(int i = 0;i<n;i++){
         cout << array[i] << " ";
@@ -208,7 +223,7 @@ int main(){
             array = restore_array(n);
             inserted = true;
             cout << "array successfully restored from array.txt\n";
-            
+
         }else if(gozine == 0){
             break;
         }else{
