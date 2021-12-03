@@ -120,14 +120,14 @@ int main(){
 
     int gozine,n,*array;
     cout << "pay attention:\nyou should define array first or had saved array in save section before use 2+ choices:\n";
-    cout << "gozine morede nazar ra vared konid:\n";
-    cout << "1.daryafte adad az voroodi\n";
-    cout << "2.darj\n";
-    cout << "3.hazf\n";
-    cout << "4.sort kardan arraye\n";
-    cout << "5.namayeshe arraye\n";
-    cout << "6.save arraye\n";
-    cout << "7.restore arraye\n";
+    cout << "enter your choice:\n";
+    cout << "1.input array\n";
+    cout << "2.insert element into array\n";
+    cout << "3.delete element from array\n";
+    cout << "4.sort array\n";
+    cout << "5.display array\n";
+    cout << "6.save array into text file\n";
+    cout << "7.restore array from text file\n";
     cout << "0.exit\n";
 
     cin >> gozine;
@@ -184,7 +184,7 @@ int main(){
         }
 
         
-        cout << "gozine morede nazar ra vared konid:\n";
+        cout << "enter your choice:\n";
         cin >> gozine;
         
         }
