@@ -6,7 +6,7 @@ using namespace std;
 int main(){
 
     int gozine,n,*array;
-
+    cout << "pay attention:\nyou should define array first or had saved array in save section before use 2+ choices:\n";
     cout << "gozine morede nazar ra vared konid:\n";
     cout << "1.daryafte adad az voroodi\n";
     cout << "2.darj\n";
@@ -44,7 +44,27 @@ int main(){
 
 
         }else if(gozine == 2){
-            
+            int number,index;
+            cout << "enter a number witch you want to insert into array:\n";
+            cin >> number;
+            cout << "enter an index for insertion:\n";
+            cin >> index;
+            int *new_array;
+            new_array = new int[n + 1];
+            new_array[index] = number;
+            for(int i = 0;i<n;i++){
+                if(i >= index){
+                    new_array[i+1] = array[i];
+
+                }else if(i < index){
+                    new_array[i] = array[i];
+                }
+            }
+            delete[] array;
+            array = new_array;
+            for(int i = 0;i<n+1;i++){
+                cout << array[i] << " ";
+            }
 
         }else if(gozine == 3){
 
