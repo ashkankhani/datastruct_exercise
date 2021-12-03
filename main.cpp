@@ -1,11 +1,11 @@
 #include <iostream>
-
+#include <stdio.h>
 using namespace std;
 
 
 int main(){
 
-    int gozine,n;
+    int gozine,n,*array;
 
     cout << "gozine morede nazar ra vared konid:\n";
     cout << "1.daryafte adad az voroodi\n";
@@ -18,54 +18,65 @@ int main(){
     cout << "0.exit\n";
 
     cin >> gozine;
+    
 
     while(gozine){
 
-        switch (gozine)
-        {
-        case 1:
-            //array input
+        if(gozine == 1){
+            cout << "enter the length of array(max = 50):\n";
+            cin >> n;
+            while(n > 50 || n <=0){
+                cout << "enter the length of array(min = 1 & max = 50):\n";
+                cin >> n;
+            }
+            array = new int [n];
+
+            for(int i = 0;i<n;i++){
+                printf("enter array[%d]: ",(i+1));
+                cin >> array[i];
+            }
+            cout << "your array is:\n";
+            for(int i = 0;i<n;i++){
+                cout << array[i] << " ";
+            }
+            cout << "\narray is ready for use ;)\n";
+
+
+
+        }else if(gozine == 2){
+            
+
+        }else if(gozine == 3){
+
+        }else if(gozine == 4){
+            
+        }else if(gozine == 5){
+            
+        }else if(gozine == 6){
+            
+        }else if(gozine == 7){
+            
+        }else if(gozine == 0){
             break;
-        case 2:
-            //darj
-            break;
-        case 3:
-            //hazf
-            break;
-        case 4:
-            //sorting
-            break;
-        case 5:
-            //display array
-            break;
-        case 6:
-            //save array
-            break;
-        case 7:
-            //restore array
-            break;
-        case 0:
-            //exit
-            break;
-        
-        default:
-            //wrong choice
+        }else{
             break;
         }
 
-
-
-
-
-
+        
         cout << "gozine morede nazar ra vared konid:\n";
         cin >> gozine;
+        
+        }
+
+
+        
+        cout << "shoma az menu kharej shodid";
+        cin.get();
+        cin.get();
     }
 
 
-    cout << "shoma az menu kharej shodid";
-    cin.get();
-    cin.get();
+    
 
 
     
@@ -73,4 +84,3 @@ int main(){
 
 
 
-}
