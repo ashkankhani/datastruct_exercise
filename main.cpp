@@ -36,6 +36,30 @@ int linear_search(int *array , int n){
     return i;
 }
 
+int binary_search(int *array , int n){
+    int number;
+    cout << "enter a number witch you want to find:\n";
+    cin >> number;
+    int mid , b=0 , e=n-1;
+    mid = (b + e)/2;
+
+    while(b <= e && array[mid] != number){
+        if(number > array[mid]){
+            b = mid + 1;
+        }else{
+            e = mid - 1;
+            
+        }
+        mid = (b + e)/2;
+    }
+    if(array[mid] == number){
+        return mid;
+    }
+    return -1;
+
+
+}
+
 void display_array(int *array,int n){
     for(int i = 0;i<n;i++){
         cout << array[i] << " ";
@@ -134,7 +158,7 @@ int *restore_array(int &n){
 int main(){
 
     int gozine,n,*array;
-    bool inserted = false;
+    bool inserted = false,sorted = false;
     cout << "pay attention:\nyou should define array first or had saved array in save section before use 2+ choices:\n";
     cout << "enter your choice:\n";
     cout << "1.input array\n";
@@ -144,6 +168,7 @@ int main(){
     cout << "5.display array\n";
     cout << "6.save array into text file\n";
     cout << "7.restore array from text file\n";
+    cout << "8.search element\n";
     cout << "0.exit\n";
 
     cin >> gozine;
@@ -190,6 +215,7 @@ int main(){
                 cout << "array not found!return to main menu and restore or insert an array!";
             }else{
                 selection_sort(array , n);
+                sorted = true;
                 cout << "sorted array = \n";
                 display_array(array , n);
                 cout << "\narray is ready for use ;)\n";
@@ -223,6 +249,26 @@ int main(){
             array = restore_array(n);
             inserted = true;
             cout << "array successfully restored from array.txt\n";
+        }else if(gozine == 8){
+            if(!inserted){
+                cout << "array not found!return to main menu and restore or insert an array!";
+            }else{
+                int res;
+                if(sorted){
+                    res = binary_search(array , n);
+                }else{
+                    res = linear_search(array , n);
+                }
+
+                if(res!=-1){
+                    cout << "the index of element is: " <<res;
+                }else{
+                    cout << "element not found!";
+                }
+                cout << endl;
+            
+            }
+            
 
         }else if(gozine == 0){
             break;
