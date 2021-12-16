@@ -42,7 +42,8 @@ float moadel){
 
 
     }else{
-        n->link = NULL;
+        //darj ebteda
+        n->link = *start;
         *start = n;
     }
 
@@ -71,6 +72,7 @@ int main()
     unsigned long int std_num;
     float moadel;
     start = new Student();
+    start = NULL;
 
     cout << "be menue barname khosh amadid!\n";
     cout << "1.afzoodane daneshjoo be list\n";
