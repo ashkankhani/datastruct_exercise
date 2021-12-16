@@ -50,6 +50,40 @@ float moadel){
 
 
 }
+
+void str_sort(Student **start){
+    Student *p,*q;
+    q = *start;
+    p = q->link;
+
+}
+void grade_sort(Student **start){
+    Student *p,*q;
+    q = *start;
+    p = q->link;
+    while (q->link != NULL)
+    {
+        while(p!=NULL){
+            //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
+            p = p->link;
+        }
+        q = q->link;
+        p = q->link;
+
+
+        // q = p;
+        // p = p->link;
+    }
+    
+}
+void stdnum_sort(Student **start){
+    Student *p,*q;
+    q = *start;
+    p = q->link;
+    
+}
+
+
 void delete_std(Student **start,string name){
     Student *q,*p;
     q = NULL;
@@ -180,7 +214,22 @@ int main()
         }else if(gozine == 4){
             
         }else if(gozine == 5){
-            
+            int sort_choice;
+            cout << "choose sort method:\n"
+            <<"1.by name\n"
+            <<"2.by grade\n"
+            <<"3.by std num";
+            cin >> sort_choice;
+            if(sort_choice == 1){
+                str_sort(&start);
+            }else if(sort_choice == 2){
+                grade_sort(&start);
+
+            }else if(sort_choice == 3){
+                stdnum_sort(&start);
+            }else{
+                cout << "wrong choice";
+            }
         }else if(gozine == 6){
             
         }else{
