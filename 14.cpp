@@ -50,6 +50,59 @@ float moadel){
 
 
 }
+void delete_std(Student **start,string name){
+    Student *q,*p;
+    q = NULL;
+    p = *start;
+    while(p!= NULL && p->name != name){
+        q = p;
+        p = p->link;
+    }
+    if(p!=NULL){
+        //found
+        if(q == NULL){
+            //first index
+            *start = p->link;
+            
+
+        }else{
+            q->link = p->link;
+
+        }
+        delete p;
+        cout << "delete was successful!";
+        
+    }else{
+        cout << "student not found!";
+    }
+}
+void delete_std(Student **start,int std_num){
+    Student *q,*p;
+    q = NULL;
+    p = *start;
+    while(p!= NULL && p->std_num != std_num){
+        q = p;
+        p = p->link;
+    }
+    if(p!=NULL){
+        //found
+        if(q == NULL){
+            //first index
+            *start = p->link;
+            
+
+        }else{
+            q->link = p->link;
+
+        }
+        delete p;
+        cout << "delete was successful!";
+        
+    }else{
+        cout << "student not found!";
+    }
+
+}
 
 void display_students(Student *start){
     Student *p;
@@ -100,15 +153,38 @@ int main()
 
 
         }else if(gozine == 2){
+            int delete_choice;
+            cout << "choose:\n"
+            <<"1.delete by name\n"
+            <<"2.delete by std number:\n";
+            cin >> delete_choice;
+            if(delete_choice == 1){
+                cin.ignore();
+                cout << "enter std name:\n";
+                getline(cin , name);
+                delete_std(&start,name);
+
+            }else if(delete_choice == 2){
+                cout << "enter stdnum:\n";
+                cin >> std_num;
+                delete_std(&start,std_num);
+            }else{
+                cout << "wrong choice\n";
+            }
+            cout << "your linked list is:\n";
+            display_students(start);
 
         }else if(gozine == 3){
-            
+            cout << "your linked list is:\n";
+            display_students(start);
         }else if(gozine == 4){
             
         }else if(gozine == 5){
             
         }else if(gozine == 6){
             
+        }else{
+            cout << "wrong choice!\n";
         }
 
 
