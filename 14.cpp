@@ -58,28 +58,81 @@ void str_sort(Student **start){
 
 }
 void grade_sort(Student **start){
-    Student *p,*q;
+    Student *q , *p;
+    string name;
+    unsigned long int std_num;
+    float moadel;
     q = *start;
     p = q->link;
     while (q->link != NULL)
     {
         while(p!=NULL){
             //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
+            if(q->moadel > p->moadel){
+                //temp
+                name = q->name;
+                std_num = q->std_num;
+                moadel = q->moadel;
+
+                //swap
+
+                q->name = p->name;
+                q->std_num = p->std_num;
+                q->moadel = p->moadel;
+                //-----------------
+
+                p->name = name;
+                p->std_num = std_num;
+                p->moadel = moadel;
+
+            }
+            
             p = p->link;
         }
         q = q->link;
         p = q->link;
 
 
-        // q = p;
-        // p = p->link;
     }
     
 }
 void stdnum_sort(Student **start){
-    Student *p,*q;
+    Student *q , *p;
+    string name;
+    unsigned long int std_num;
+    float moadel;
     q = *start;
     p = q->link;
+    while (q->link != NULL)
+    {
+        while(p!=NULL){
+            //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
+            if(q->std_num > p->std_num){
+                //temp
+                name = q->name;
+                std_num = q->std_num;
+                moadel = q->moadel;
+
+                //swap
+
+                q->name = p->name;
+                q->std_num = p->std_num;
+                q->moadel = p->moadel;
+                //-----------------
+
+                p->name = name;
+                p->std_num = std_num;
+                p->moadel = moadel;
+
+            }
+            
+            p = p->link;
+        }
+        q = q->link;
+        p = q->link;
+
+
+    }
     
 }
 
@@ -160,11 +213,11 @@ int main()
     start = NULL;
 
     cout << "be menue barname khosh amadid!\n";
-    cout << "1.afzoodane daneshjoo be list\n";
-    cout << "2.hazfe daneshjoo az list\n";
-    cout << "3.namayeshe liste daneshjooyan\n";
-    cout << "4.search by name and lastname\n";
-    cout << "5.moratab sazi\n";
+    cout << "1.add new student to list\n";
+    cout << "2.delete student from list\n";
+    cout << "3.show students list\n";
+    cout << "4.search by name and lastname and grade\n";
+    cout << "5.sort list(by grade stdnum and name)\n";
     cout << "6.binary search\n";
     cout << "0.exit\n";
     cout << "lotfan yek gozine entekhab konid:\n";
@@ -230,6 +283,8 @@ int main()
             }else{
                 cout << "wrong choice";
             }
+            cout << "your linked list is:\n";
+            display_students(start);
         }else if(gozine == 6){
             
         }else{
