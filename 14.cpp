@@ -263,8 +263,14 @@ void display_students(Student *start){
     }
 
 }
+///////////////
+//for searches
 
 bool str_check(string str1 , string str2){
+    if(str2 == "0"){
+        return true;
+    }
+
     if(str1.find(str2) != string::npos){
         return true;
     }
@@ -272,20 +278,59 @@ bool str_check(string str1 , string str2){
 
 }
 
-void linear_search(Student **start ,
+bool stdnum_check(unsigned long int stdn1 ,
+unsigned long int stdn2){
+    if(stdn2 == 0){
+        return true;
+    }
+    return stdn1 == stdn2;
+}
+
+bool grade_check(float grade1 , float grade2 , char amal){
+    if(amal == '0'){
+        return true;
+    }
+    switch (amal)
+    {
+    case '=':
+        return grade1 == grade2;
+        break;
+    case '>':
+        return grade1 > grade2;
+        break;
+    case '<':
+        return grade1 < grade2;
+        break;
+    default:
+        break;
+    }
+}
+
+void linear_search(Student *start ,
 string name , 
 float grade , 
+char amal,
 unsigned long int std_num){
 
     Student *p;
-    p = *start;
+    p = start;
+    cout << "name" <<"\t|\t"<<"std_number" << "\t|\t"<< "moadel" <<endl;
     while(p!=NULL){
 
+        if(str_check(p->name,name)
+        && grade_check(p->moadel , grade,amal)
+        && stdnum_check(p->std_num , std_num)){
+
+            cout << p->name <<"\t|\t"<< p->std_num << "\t|\t" << p -> moadel <<endl;
+            
+        }
 
 
         p = p->link;
     }
 }
+///////////////
+//for searches
 
 int main()
 {
@@ -294,6 +339,7 @@ int main()
     string name;
     unsigned long int std_num;
     float moadel;
+    char amal;
     start = new Student();
     start = NULL;
 
@@ -358,13 +404,37 @@ int main()
             int l_search;
             cin >> l_search;
             if(l_search == 1){
-
+                cout << "enter name for search:\n";
+                cin.ignore();
+                getline(cin,name);
+                linear_search(start,name,0,'0',0);
             }else if(l_search == 2){
-                
+                cout << "enter stdnum for search:\n";
+                cin >> std_num;
+                linear_search(start,"0",0,'0',std_num);
             }else if(l_search == 3){
-
+                cout << "enter grade for search:\n";
+                cin >> moadel;
+                cout << "choose grade range:\n"
+                << ">\n"
+                << "<\n"
+                << "=\n";
+                cin >> amal;
+                linear_search(start,"0",moadel,amal,0);
             }else if(l_search == 4){
-
+                cout << "enter name for search:\n";
+                cin.ignore();
+                getline(cin,name);
+                cout << "enter stdnum for search:\n";
+                cin >> std_num;
+                cout << "enter grade for search:\n";
+                cin >> moadel;
+                cout << "choose grade range:\n"
+                << ">\n"
+                << "<\n"
+                << "=\n";
+                cin >> amal;
+                linear_search(start , name , moadel , amal , std_num);
             }else{
                 cout << "wrong choice!";
             }
