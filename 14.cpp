@@ -51,10 +51,70 @@ float moadel){
 
 }
 
+bool swap(string str1 , string str2){
+    if(str1 == str2){
+        return false;
+    }
+    bool swap = false,mosavi = true;
+    int len,len1=str1.length(),len2=str2.length(),i = 0;
+    if(len1 < len2){
+        len = len1;
+    }else{
+        len = len2;
+    }
+    while(i < len && mosavi){
+        if(str1[i] > str2[i]){
+            mosavi = false;
+            return true;
+        }
+        i++;
+    }
+    if(mosavi && len1 > len2){
+        swap = true;;
+    }
+    return swap;
+
+
+
+}
+
 void str_sort(Student **start){
-    Student *p,*q;
+    Student *q , *p;
+    string name;
+    unsigned long int std_num;
+    float moadel;
     q = *start;
     p = q->link;
+    while (q->link != NULL)
+    {
+        while(p!=NULL){
+            //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
+            if(q->moadel > p->moadel){
+                //temp
+                name = q->name;
+                std_num = q->std_num;
+                moadel = q->moadel;
+
+                //swap
+
+                q->name = p->name;
+                q->std_num = p->std_num;
+                q->moadel = p->moadel;
+                //-----------------
+
+                p->name = name;
+                p->std_num = std_num;
+                p->moadel = moadel;
+
+            }
+            
+            p = p->link;
+        }
+        q = q->link;
+        p = q->link;
+
+
+    }
 
 }
 void grade_sort(Student **start){
