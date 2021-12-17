@@ -287,11 +287,12 @@ unsigned long int stdn2){
 }
 
 bool grade_check(float grade1 , float grade2 , char amal){
-    if(amal == '0'){
-        return true;
-    }
+
     switch (amal)
     {
+    case '0':
+        return true;
+        break;
     case '=':
         return grade1 == grade2;
         break;
@@ -304,6 +305,7 @@ bool grade_check(float grade1 , float grade2 , char amal){
     default:
         break;
     }
+    return true;
 }
 
 void linear_search(Student *start ,
@@ -334,7 +336,6 @@ unsigned long int std_num){
 
 int main()
 {
-    return 0;
     int gozine,index;
     string name;
     unsigned long int std_num;
@@ -400,7 +401,7 @@ int main()
             <<"1.by name\n"
             <<"2.by stdnum\n"
             <<"3.by grade:\n"
-            <<"4.all above";
+            <<"4.all above\n";
             int l_search;
             cin >> l_search;
             if(l_search == 1){
