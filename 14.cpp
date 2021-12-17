@@ -70,7 +70,7 @@ bool swap(string str1 , string str2){
         i++;
     }
     if(mosavi && len1 > len2){
-        swap = true;;
+        swap = true;
     }
     return swap;
 
@@ -89,7 +89,7 @@ void str_sort(Student **start){
     {
         while(p!=NULL){
             //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
-            if(q->moadel > p->moadel){
+            if(swap(q->name , p->name)){
                 //temp
                 name = q->name;
                 std_num = q->std_num;
@@ -276,7 +276,7 @@ int main()
     cout << "1.add new student to list\n";
     cout << "2.delete student from list\n";
     cout << "3.show students list\n";
-    cout << "4.search by name and lastname and grade\n";
+    cout << "4.linear search by name and stdnum and grade\n";
     cout << "5.sort list(by grade stdnum and name)\n";
     cout << "6.binary search\n";
     cout << "0.exit\n";
@@ -325,13 +325,32 @@ int main()
             cout << "your linked list is:\n";
             display_students(start);
         }else if(gozine == 4){
+            cout << "choose linear search method:\n"
+            <<"1.by name\n"
+            <<"2.by stdnum\n"
+            <<"3.by grade:\n"
+            <<"4.all above";
+            int l_search;
+            cin >> l_search;
+            if(l_search == 1){
+
+            }else if(l_search == 2){
+                
+            }else if(l_search == 3){
+
+            }else if(l_search == 4){
+
+            }else{
+                cout << "wrong choice!";
+            }
+
             
         }else if(gozine == 5){
             int sort_choice;
             cout << "choose sort method:\n"
             <<"1.by name\n"
             <<"2.by grade\n"
-            <<"3.by std num";
+            <<"3.by std num\n";
             cin >> sort_choice;
             if(sort_choice == 1){
                 str_sort(&start);
