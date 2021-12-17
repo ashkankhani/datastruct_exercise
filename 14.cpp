@@ -1,6 +1,8 @@
 #include <iostream>
+#include <string>
+
 using namespace std;
- 
+
 struct Student {
     string name;
     unsigned long int std_num;
@@ -262,9 +264,32 @@ void display_students(Student *start){
 
 }
 
+bool str_check(string str1 , string str2){
+    if(str1.find(str2) != string::npos){
+        return true;
+    }
+    return false;
+
+}
+
+void linear_search(Student **start ,
+string name , 
+float grade , 
+unsigned long int std_num){
+
+    Student *p;
+    p = *start;
+    while(p!=NULL){
+
+
+
+        p = p->link;
+    }
+}
+
 int main()
 {
-    
+    return 0;
     int gozine,index;
     string name;
     unsigned long int std_num;
