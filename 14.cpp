@@ -68,6 +68,9 @@ bool swap(string str1 , string str2){
         if(str1[i] > str2[i]){
             mosavi = false;
             return true;
+        }else if(str1[i] < str2[i]){
+            mosavi = false;
+            return false;
         }
         i++;
     }
@@ -336,6 +339,8 @@ unsigned long int std_num){
 
 int main()
 {
+    cout << swap("ashkan khani" , "erfan madadi");
+    return 0;
     int gozine,index;
     string name;
     unsigned long int std_num;
