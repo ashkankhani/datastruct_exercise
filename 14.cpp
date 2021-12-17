@@ -339,8 +339,6 @@ unsigned long int std_num){
 
 int main()
 {
-    cout << swap("ashkan khani" , "erfan madadi");
-    return 0;
     int gozine,index;
     string name;
     unsigned long int std_num;
