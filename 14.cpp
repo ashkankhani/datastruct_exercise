@@ -9,7 +9,35 @@ struct Student {
     float moadel;
     Student *link;
 }*start;
+bool swap(string str1 , string str2){
+    if(str1 == str2){
+        return false;
+    }
+    bool swap = false,mosavi = true;
+    int len,len1=str1.length(),len2=str2.length(),i = 0;
+    if(len1 < len2){
+        len = len1;
+    }else{
+        len = len2;
+    }
+    while(i < len && mosavi){
+        if(str1[i] > str2[i]){
+            mosavi = false;
+            return true;
+        }else if(str1[i] < str2[i]){
+            mosavi = false;
+            return false;
+        }
+        i++;
+    }
+    if(mosavi && len1 > len2){
+        swap = true;
+    }
+    return swap;
 
+
+
+}
 
 int get_last_index(Student *start){
     int i = -1;
@@ -24,7 +52,100 @@ int get_last_index(Student *start){
     
 }
 
-int get_index(Student *start,float moadel);
+string get_name(Student *start,int i){
+    int j = 0;
+    Student *p;
+    p = start;
+    while(j < i){
+        p = p->link;
+        j++;
+    }
+
+    return p->name;
+}
+unsigned long int get_stdnum(Student *start,int i){
+    int j = 0;
+    Student *p;
+    p = start;
+    while(j < i){
+        p = p->link;
+        j++;
+    }
+
+    return p->std_num;
+}
+float get_moadel(Student *start,int i){
+    int j = 0;
+    Student *p;
+    p = start;
+    while(j < i){
+        p = p->link;
+        j++;
+    }
+
+    return p->moadel;
+}
+
+int binary_search(Student *start,string name){
+    int b=0 , e=get_last_index(start) , m = (b + e)/2;
+    string name_m;
+    name_m = get_name(start , m);
+    while(b<=e && name_m != name){
+        if(swap(name_m,name)){
+            //m is bigger
+            e = m - 1;
+        }else{
+            b = m + 1;
+        }
+        m = (e + b)/2;
+        name_m = get_name(start , m);
+    }
+    if(name_m == name){
+        return m;
+    }
+    return -1;
+    
+
+}
+int binary_search(Student *start,unsigned long int std_num){
+    int b=0 , e=get_last_index(start) , m = (b + e)/2;
+    unsigned long int std_num_m;
+    std_num_m = get_stdnum(start , m);
+    while(b<=e && std_num_m != std_num){
+        if(std_num_m > std_num){
+            //m is bigger
+            e = m - 1;
+        }else{
+            b = m + 1;
+        }
+        m = (e + b)/2;
+        std_num_m = get_stdnum(start , m);
+    }
+    if(std_num_m == std_num){
+        return m;
+    }
+    return -1;
+}
+int binary_search(Student *start,float moadel){
+    int b=0 , e=get_last_index(start) , m = (b + e)/2;
+    float moadel_m;
+    moadel_m = get_moadel(start , m);
+    while(b<=e && moadel_m != moadel){
+        if(moadel_m > moadel){
+            //m is bigger
+            e = m - 1;
+        }else{
+            b = m + 1;
+        }
+        m = (e + b)/2;
+        moadel_m = get_moadel(start , m);
+    }
+    if(moadel_m == moadel){
+        return m;
+    }
+    return -1;
+}
+
 
 
 void insert_std(Student **start,
@@ -69,35 +190,7 @@ float moadel){
 
 }
 
-bool swap(string str1 , string str2){
-    if(str1 == str2){
-        return false;
-    }
-    bool swap = false,mosavi = true;
-    int len,len1=str1.length(),len2=str2.length(),i = 0;
-    if(len1 < len2){
-        len = len1;
-    }else{
-        len = len2;
-    }
-    while(i < len && mosavi){
-        if(str1[i] > str2[i]){
-            mosavi = false;
-            return true;
-        }else if(str1[i] < str2[i]){
-            mosavi = false;
-            return false;
-        }
-        i++;
-    }
-    if(mosavi && len1 > len2){
-        swap = true;
-    }
-    return swap;
 
-
-
-}
 
 void str_sort(Student **start){
     Student *q , *p;
@@ -480,6 +573,28 @@ int main()
             cout << "your linked list is:\n";
             display_students(start);
         }else if(gozine == 6){
+            int search_choice;
+            cout << "choose binary search method:\n"
+            <<"1.by name\n"
+            <<"2.by grade\n"
+            <<"3.by std num\n";
+            cin >> search_choice;
+            if(search_choice == 1){
+                //name
+                cout << "enter name:\n";
+                cin.ignore();
+                getline(cin,name);
+            }else if(search_choice == 2){
+                //grade
+                cout << "enter grade:\n";
+                cin >> moadel;
+                binary_search(start , moadel);
+            }else if(search_choice == 3){
+                //std num
+                cout << "enter std number:\n";
+                cin >> std_num;
+                binary_search(start , std_num);
+            }   
             
         }else{
             cout << "wrong choice!\n";
@@ -492,15 +607,6 @@ int main()
 
     }
 
-
-    
-
-
-
-
- 
-  
- 
     return 0;
 }
  
