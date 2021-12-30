@@ -11,6 +11,22 @@ struct Student {
 }*start;
 
 
+int get_last_index(Student *start){
+    int i = -1;
+    Student *p;
+    p = start;
+    while (p!=NULL)
+    {
+        p = p->link;
+        i++;
+    }
+    return i;
+    
+}
+
+int get_index(Student *start,float moadel);
+
+
 void insert_std(Student **start,
 int index,
 string name ,
