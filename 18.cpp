@@ -170,6 +170,7 @@ float moadel){
             i++;
         }
         n->next = p->next;
+        n->prev = p;
         p->next = n;
 
         
@@ -178,6 +179,8 @@ float moadel){
     }else{
         //darj ebteda
         n->next = p->prev;
+        n->prev = p;
+        p->prev->prev=n;
         p->prev = n;
     }
 
