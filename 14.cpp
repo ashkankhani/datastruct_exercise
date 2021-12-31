@@ -584,16 +584,20 @@ int main()
                 cout << "enter name:\n";
                 cin.ignore();
                 getline(cin,name);
+                cout << "index = "
+                << binary_search(start , name);
             }else if(search_choice == 2){
                 //grade
                 cout << "enter grade:\n";
                 cin >> moadel;
-                binary_search(start , moadel);
+                cout << "index = "
+                << binary_search(start , moadel);
             }else if(search_choice == 3){
                 //std num
                 cout << "enter std number:\n";
                 cin >> std_num;
-                binary_search(start , std_num);
+                cout << "index = "
+                << binary_search(start , std_num);
             }   
             
         }else{
