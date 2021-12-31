@@ -40,18 +40,18 @@ bool swap(string str1 , string str2){
 
 }
 
-// int get_last_index(Student *start){
-//     int i = -1;
-//     Student *p;
-//     p = start;
-//     while (p!=NULL)
-//     {
-//         p = p->link;
-//         i++;
-//     }
-//     return i;
+int get_last_index(Student *start){
+    int i = -1;
+    Student *p;
+    p = start->prev;
+    while (p!=start)
+    {
+        p = p->next;
+        i++;
+    }
+    return i;
     
-// }
+}
 
 // string get_name(Student *start,int i){
 //     int j = 0;
@@ -161,6 +161,7 @@ float moadel){
     n -> moadel = moadel;
     Student *p;
     p = *start; // sargreh
+    int last_index = get_last_index(*start);
     if(index){
         int i = 0;
         p = p->prev;
@@ -171,7 +172,18 @@ float moadel){
         }
         n->next = p->next;
         n->prev = p;
+        if(index < last_index){
+            //tahe list
+            p->next->prev = n;
+        }else{
+            Student *s;
+            s = *start;
+            s->next = n;
+        }
+        
+        
         p->next = n;
+        
 
         
 
@@ -180,9 +192,16 @@ float moadel){
         //darj ebteda
         n->next = p->prev;
         n->prev = p;
-        p->prev->prev=n;
         p->prev = n;
+        if(last_index == -1){
+            p->next = n;
+        }else{
+            p->prev->prev=n;
+        }
     }
+    cout << last_index;
+    
+    
 
     
     
