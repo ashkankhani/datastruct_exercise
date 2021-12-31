@@ -53,99 +53,99 @@ int get_last_index(Student *start){
     
 }
 
-// string get_name(Student *start,int i){
-//     int j = 0;
-//     Student *p;
-//     p = start;
-//     while(j < i){
-//         p = p->link;
-//         j++;
-//     }
+string get_name(Student *start,int i){
+    int j = 0;
+    Student *p;
+    p = start->prev;
+    while(j < i){
+        p = p->next;
+        j++;
+    }
 
-//     return p->name;
-// }
-// unsigned long int get_stdnum(Student *start,int i){
-//     int j = 0;
-//     Student *p;
-//     p = start;
-//     while(j < i){
-//         p = p->link;
-//         j++;
-//     }
+    return p->name;
+}
+unsigned long int get_stdnum(Student *start,int i){
+    int j = 0;
+    Student *p;
+    p = start->prev;
+    while(j < i){
+        p = p->next;
+        j++;
+    }
 
-//     return p->std_num;
-// }
-// float get_moadel(Student *start,int i){
-//     int j = 0;
-//     Student *p;
-//     p = start;
-//     while(j < i){
-//         p = p->link;
-//         j++;
-//     }
+    return p->std_num;
+}
+float get_moadel(Student *start,int i){
+    int j = 0;
+    Student *p;
+    p = start->prev;
+    while(j < i){
+        p = p->next;
+        j++;
+    }
 
-//     return p->moadel;
-// }
+    return p->moadel;
+}
 
-// int binary_search(Student *start,string name){
-//     int b=0 , e=get_last_index(start) , m = (b + e)/2;
-//     string name_m;
-//     name_m = get_name(start , m);
-//     while(b<=e && name_m != name){
-//         if(swap(name_m,name)){
-//             //m is bigger
-//             e = m - 1;
-//         }else{
-//             b = m + 1;
-//         }
-//         m = (e + b)/2;
-//         name_m = get_name(start , m);
-//     }
-//     if(name_m == name){
-//         return m;
-//     }
-//     return -1;
+int binary_search(Student *start,string name){
+    int b=0 , e=get_last_index(start) , m = (b + e)/2;
+    string name_m;
+    name_m = get_name(start , m);
+    while(b<=e && name_m != name){
+        if(swap(name_m,name)){
+            //m is bigger
+            e = m - 1;
+        }else{
+            b = m + 1;
+        }
+        m = (e + b)/2;
+        name_m = get_name(start , m);
+    }
+    if(name_m == name){
+        return m;
+    }
+    return -1;
     
 
-// }
-// int binary_search(Student *start,unsigned long int std_num){
-//     int b=0 , e=get_last_index(start) , m = (b + e)/2;
-//     unsigned long int std_num_m;
-//     std_num_m = get_stdnum(start , m);
-//     while(b<=e && std_num_m != std_num){
-//         if(std_num_m > std_num){
-//             //m is bigger
-//             e = m - 1;
-//         }else{
-//             b = m + 1;
-//         }
-//         m = (e + b)/2;
-//         std_num_m = get_stdnum(start , m);
-//     }
-//     if(std_num_m == std_num){
-//         return m;
-//     }
-//     return -1;
-// }
-// int binary_search(Student *start,float moadel){
-//     int b=0 , e=get_last_index(start) , m = (b + e)/2;
-//     float moadel_m;
-//     moadel_m = get_moadel(start , m);
-//     while(b<=e && moadel_m != moadel){
-//         if(moadel_m > moadel){
-//             //m is bigger
-//             e = m - 1;
-//         }else{
-//             b = m + 1;
-//         }
-//         m = (e + b)/2;
-//         moadel_m = get_moadel(start , m);
-//     }
-//     if(moadel_m == moadel){
-//         return m;
-//     }
-//     return -1;
-// }
+}
+int binary_search(Student *start,unsigned long int std_num){
+    int b=0 , e=get_last_index(start) , m = (b + e)/2;
+    unsigned long int std_num_m;
+    std_num_m = get_stdnum(start , m);
+    while(b<=e && std_num_m != std_num){
+        if(std_num_m > std_num){
+            //m is bigger
+            e = m - 1;
+        }else{
+            b = m + 1;
+        }
+        m = (e + b)/2;
+        std_num_m = get_stdnum(start , m);
+    }
+    if(std_num_m == std_num){
+        return m;
+    }
+    return -1;
+}
+int binary_search(Student *start,float moadel){
+    int b=0 , e=get_last_index(start) , m = (b + e)/2;
+    float moadel_m;
+    moadel_m = get_moadel(start , m);
+    while(b<=e && moadel_m != moadel){
+        if(moadel_m > moadel){
+            //m is bigger
+            e = m - 1;
+        }else{
+            b = m + 1;
+        }
+        m = (e + b)/2;
+        moadel_m = get_moadel(start , m);
+    }
+    if(moadel_m == moadel){
+        return m;
+    }
+    return -1;
+}
 
 
 
@@ -214,178 +214,165 @@ float moadel){
 
 
 
-// void str_sort(Student **start){
-//     Student *q , *p;
-//     string name;
-//     unsigned long int std_num;
-//     float moadel;
-//     q = *start;
-//     p = q->link;
-//     while (q->link != NULL)
-//     {
-//         while(p!=NULL){
-//             //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
-//             if(swap(q->name , p->name)){
-//                 //temp
-//                 name = q->name;
-//                 std_num = q->std_num;
-//                 moadel = q->moadel;
+void str_sort(Student **start){
+    Student *q , *p;
+    string name;
+    unsigned long int std_num;
+    float moadel;
+    q = *start;
+    q = q->next;
+    p = q->next;
+    while (q->next != *start)
+    {
+        while(p!=*start){
+            //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
+            if(swap(q->name , p->name)){
+                //temp
+                name = q->name;
+                std_num = q->std_num;
+                moadel = q->moadel;
 
-//                 //swap
+                //swap
 
-//                 q->name = p->name;
-//                 q->std_num = p->std_num;
-//                 q->moadel = p->moadel;
-//                 //-----------------
+                q->name = p->name;
+                q->std_num = p->std_num;
+                q->moadel = p->moadel;
+                //-----------------
 
-//                 p->name = name;
-//                 p->std_num = std_num;
-//                 p->moadel = moadel;
+                p->name = name;
+                p->std_num = std_num;
+                p->moadel = moadel;
 
-//             }
+            }
             
-//             p = p->link;
-//         }
-//         q = q->link;
-//         p = q->link;
+            p = p->next;
+        }
+        q = q->next;
+        p = q->next;
 
 
-//     }
+    }
 
-// }
-// void grade_sort(Student **start){
-//     Student *q , *p;
-//     string name;
-//     unsigned long int std_num;
-//     float moadel;
-//     q = *start;
-//     p = q->link;
-//     while (q->link != NULL)
-//     {
-//         while(p!=NULL){
-//             //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
-//             if(q->moadel > p->moadel){
-//                 //temp
-//                 name = q->name;
-//                 std_num = q->std_num;
-//                 moadel = q->moadel;
+}
+void grade_sort(Student **start){
+    Student *q , *p;
+    string name;
+    unsigned long int std_num;
+    float moadel;
+    q = *start;
+    q = q->next;
+    p = q->next;
+    while (q->next != *start)
+    {
+        while(p!=*start){
+            //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
+            if(q->moadel > p->moadel){
+                //temp
+                name = q->name;
+                std_num = q->std_num;
+                moadel = q->moadel;
 
-//                 //swap
+                //swap
 
-//                 q->name = p->name;
-//                 q->std_num = p->std_num;
-//                 q->moadel = p->moadel;
-//                 //-----------------
+                q->name = p->name;
+                q->std_num = p->std_num;
+                q->moadel = p->moadel;
+                //-----------------
 
-//                 p->name = name;
-//                 p->std_num = std_num;
-//                 p->moadel = moadel;
+                p->name = name;
+                p->std_num = std_num;
+                p->moadel = moadel;
 
-//             }
+            }
             
-//             p = p->link;
-//         }
-//         q = q->link;
-//         p = q->link;
+            p = p->next;
+        }
+        q = q->next;
+        p = q->next;
 
 
-//     }
+    }
     
-// }
-// void stdnum_sort(Student **start){
-//     Student *q , *p;
-//     string name;
-//     unsigned long int std_num;
-//     float moadel;
-//     q = *start;
-//     p = q->link;
-//     while (q->link != NULL)
-//     {
-//         while(p!=NULL){
-//             //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
-//             if(q->std_num > p->std_num){
-//                 //temp
-//                 name = q->name;
-//                 std_num = q->std_num;
-//                 moadel = q->moadel;
+}
+void stdnum_sort(Student **start){
+    Student *q , *p;
+    string name;
+    unsigned long int std_num;
+    float moadel;
+    q = *start;
+    q = q->next;
+    p = q->next;
+    while (q->next != NULL)
+    {
+        while(p!=*start){
+            //cout << "q = "<<q->moadel << " "<<"p = "<<p->moadel << endl;
+            if(q->std_num > p->std_num){
+                //temp
+                name = q->name;
+                std_num = q->std_num;
+                moadel = q->moadel;
 
-//                 //swap
+                //swap
 
-//                 q->name = p->name;
-//                 q->std_num = p->std_num;
-//                 q->moadel = p->moadel;
-//                 //-----------------
+                q->name = p->name;
+                q->std_num = p->std_num;
+                q->moadel = p->moadel;
+                //-----------------
 
-//                 p->name = name;
-//                 p->std_num = std_num;
-//                 p->moadel = moadel;
+                p->name = name;
+                p->std_num = std_num;
+                p->moadel = moadel;
 
-//             }
+            }
             
-//             p = p->link;
-//         }
-//         q = q->link;
-//         p = q->link;
+            p = p->next;
+        }
+        q = q->next;
+        p = q->next;
 
 
-//     }
+    }
     
-// }
+}
 
 
-// void delete_std(Student **start,string name){
-//     Student *q,*p;
-//     q = NULL;
-//     p = *start;
-//     while(p!= NULL && p->name != name){
-//         q = p;
-//         p = p->link;
-//     }
-//     if(p!=NULL){
-//         //found
-//         if(q == NULL){
-//             //first index
-//             *start = p->link;
-            
-
-//         }else{
-//             q->link = p->link;
-
-//         }
-//         delete p;
-//         cout << "delete was successful!";
+void delete_std(Student **start,string name){
+    Student *q,*p;
+    q = *start;
+    p = q->next;
+    while(p!= *start && p->name != name){
+        q = p;
+        p = p->next;
+    }
+    if(p!=*start){
+        //found
+        q->next = p->next;
+        delete p;
+        cout << "delete was successful!";
         
-//     }else{
-//         cout << "student not found!";
-//     }
-// }
-// void delete_std(Student **start,int std_num){
-//     Student *q,*p;
-//     q = NULL;
-//     p = *start;
-//     while(p!= NULL && p->std_num != std_num){
-//         q = p;
-//         p = p->link;
-//     }
-//     if(p!=NULL){
-//         //found
-//         if(q == NULL){
-//             //first index
-//             *start = p->link;
-            
-
-//         }else{
-//             q->link = p->link;
-
-//         }
-//         delete p;
-//         cout << "delete was successful!";
+    }else{
+        cout << "student not found!";
+    }
+}
+void delete_std(Student **start,int std_num){
+    Student *q,*p;
+    q = *start;
+    p = q->next;
+    while(p!= *start && p->std_num != std_num){
+        q = p;
+        p = p->next;
+    }
+    if(p!=*start){
+        //found
+        q->next = p->next;
+        delete p;
+        cout << "delete was successful!";
         
-//     }else{
-//         cout << "student not found!";
-//     }
+    }else{
+        cout << "student not found!";
+    }
 
-// }
+}
 
 void display_students(Student *start){
     Student *p;
@@ -397,74 +384,74 @@ void display_students(Student *start){
     }
 
 }
-// ///////////////
-// //for searches
+///////////////
+//for searches
 
-// bool str_check(string str1 , string str2){
-//     if(str2 == "0"){
-//         return true;
-//     }
+bool str_check(string str1 , string str2){
+    if(str2 == "0"){
+        return true;
+    }
 
-//     if(str1.find(str2) != string::npos){
-//         return true;
-//     }
-//     return false;
+    if(str1.find(str2) != string::npos){
+        return true;
+    }
+    return false;
 
-// }
+}
 
-// bool stdnum_check(unsigned long int stdn1 ,
-// unsigned long int stdn2){
-//     if(stdn2 == 0){
-//         return true;
-//     }
-//     return stdn1 == stdn2;
-// }
+bool stdnum_check(unsigned long int stdn1 ,
+unsigned long int stdn2){
+    if(stdn2 == 0){
+        return true;
+    }
+    return stdn1 == stdn2;
+}
 
-// bool grade_check(float grade1 , float grade2 , char amal){
+bool grade_check(float grade1 , float grade2 , char amal){
 
-//     switch (amal)
-//     {
-//     case '0':
-//         return true;
-//         break;
-//     case '=':
-//         return grade1 == grade2;
-//         break;
-//     case '>':
-//         return grade1 > grade2;
-//         break;
-//     case '<':
-//         return grade1 < grade2;
-//         break;
-//     default:
-//         break;
-//     }
-//     return true;
-// }
+    switch (amal)
+    {
+    case '0':
+        return true;
+        break;
+    case '=':
+        return grade1 == grade2;
+        break;
+    case '>':
+        return grade1 > grade2;
+        break;
+    case '<':
+        return grade1 < grade2;
+        break;
+    default:
+        break;
+    }
+    return true;
+}
 
-// void linear_search(Student *start ,
-// string name , 
-// float grade , 
-// char amal,
-// unsigned long int std_num){
+void linear_search(Student *start ,
+string name , 
+float grade , 
+char amal,
+unsigned long int std_num){
 
-//     Student *p;
-//     p = start;
-//     cout << "name" <<"\t|\t"<<"std_number" << "\t|\t"<< "moadel" <<endl;
-//     while(p!=NULL){
+    Student *p;
+    p = start->prev;
+    cout << "name" <<"\t|\t"<<"std_number" << "\t|\t"<< "moadel" <<endl;
+    while(p!=start){
 
-//         if(str_check(p->name,name)
-//         && grade_check(p->moadel , grade,amal)
-//         && stdnum_check(p->std_num , std_num)){
+        if(str_check(p->name,name)
+        && grade_check(p->moadel , grade,amal)
+        && stdnum_check(p->std_num , std_num)){
 
-//             cout << p->name <<"\t|\t"<< p->std_num << "\t|\t" << p -> moadel <<endl;
+            cout << p->name <<"\t|\t"<< p->std_num << "\t|\t" << p -> moadel <<endl;
             
-//         }
+        }
 
 
-//         p = p->link;
-//     }
-// }
+        p = p->next;
+    }
+}
 
 int main()
 {
@@ -508,127 +495,126 @@ int main()
             display_students(start);
 
 
+        }else if(gozine == 2){
+            int delete_choice;
+            cout << "choose:\n"
+            <<"1.delete by name\n"
+            <<"2.delete by std number:\n";
+            cin >> delete_choice;
+            if(delete_choice == 1){
+                cin.ignore();
+                cout << "enter std name:\n";
+                getline(cin , name);
+                delete_std(&start,name);
+
+            }else if(delete_choice == 2){
+                cout << "enter stdnum:\n";
+                cin >> std_num;
+                delete_std(&start,std_num);
+            }else{
+                cout << "wrong choice\n";
+            }
+            cout << "your linked list is:\n";
+            display_students(start);
+
+        }else if(gozine == 3){
+            cout << "your linked list is:\n";
+            display_students(start);
+        }else if(gozine == 4){
+            cout << "choose linear search method:\n"
+            <<"1.by name\n"
+            <<"2.by stdnum\n"
+            <<"3.by grade:\n"
+            <<"4.all above\n";
+            int l_search;
+            cin >> l_search;
+            if(l_search == 1){
+                cout << "enter name for search:\n";
+                cin.ignore();
+                getline(cin,name);
+                linear_search(start,name,0,'0',0);
+            }else if(l_search == 2){
+                cout << "enter stdnum for search:\n";
+                cin >> std_num;
+                linear_search(start,"0",0,'0',std_num);
+            }else if(l_search == 3){
+                cout << "enter grade for search:\n";
+                cin >> moadel;
+                cout << "choose grade range:\n"
+                << ">\n"
+                << "<\n"
+                << "=\n";
+                cin >> amal;
+                linear_search(start,"0",moadel,amal,0);
+            }else if(l_search == 4){
+                cout << "enter name for search:\n";
+                cin.ignore();
+                getline(cin,name);
+                cout << "enter stdnum for search:\n";
+                cin >> std_num;
+                cout << "enter grade for search:\n";
+                cin >> moadel;
+                cout << "choose grade range:\n"
+                << ">\n"
+                << "<\n"
+                << "=\n";
+                cin >> amal;
+                linear_search(start , name , moadel , amal , std_num);
+            }else{
+                cout << "wrong choice!";
+            }
+
+            
+        }else if(gozine == 5){
+            int sort_choice;
+            cout << "choose sort method:\n"
+            <<"1.by name\n"
+            <<"2.by grade\n"
+            <<"3.by std num\n";
+            cin >> sort_choice;
+            if(sort_choice == 1){
+                str_sort(&start);
+            }else if(sort_choice == 2){
+                grade_sort(&start);
+
+            }else if(sort_choice == 3){
+                stdnum_sort(&start);
+            }else{
+                cout << "wrong choice";
+            }
+            cout << "your linked list is:\n";
+            display_students(start);
+        }else if(gozine == 6){
+            int search_choice;
+            cout << "choose binary search method:\n"
+            <<"1.by name\n"
+            <<"2.by grade\n"
+            <<"3.by std num\n";
+            cin >> search_choice;
+            if(search_choice == 1){
+                //name
+                cout << "enter name:\n";
+                cin.ignore();
+                getline(cin,name);
+                cout << "index = "
+                << binary_search(start , name);
+            }else if(search_choice == 2){
+                //grade
+                cout << "enter grade:\n";
+                cin >> moadel;
+                cout << "index = "
+                << binary_search(start , moadel);
+            }else if(search_choice == 3){
+                //std num
+                cout << "enter std number:\n";
+                cin >> std_num;
+                cout << "index = "
+                << binary_search(start , std_num);
+            }   
+            
+        }else{
+            cout << "wrong choice!\n";
         }
-        // else if(gozine == 2){
-        //     int delete_choice;
-        //     cout << "choose:\n"
-        //     <<"1.delete by name\n"
-        //     <<"2.delete by std number:\n";
-        //     cin >> delete_choice;
-        //     if(delete_choice == 1){
-        //         cin.ignore();
-        //         cout << "enter std name:\n";
-        //         getline(cin , name);
-        //         delete_std(&start,name);
-
-        //     }else if(delete_choice == 2){
-        //         cout << "enter stdnum:\n";
-        //         cin >> std_num;
-        //         delete_std(&start,std_num);
-        //     }else{
-        //         cout << "wrong choice\n";
-        //     }
-        //     cout << "your linked list is:\n";
-        //     display_students(start);
-
-        // }else if(gozine == 3){
-        //     cout << "your linked list is:\n";
-        //     display_students(start);
-        // }else if(gozine == 4){
-        //     cout << "choose linear search method:\n"
-        //     <<"1.by name\n"
-        //     <<"2.by stdnum\n"
-        //     <<"3.by grade:\n"
-        //     <<"4.all above\n";
-        //     int l_search;
-        //     cin >> l_search;
-        //     if(l_search == 1){
-        //         cout << "enter name for search:\n";
-        //         cin.ignore();
-        //         getline(cin,name);
-        //         linear_search(start,name,0,'0',0);
-        //     }else if(l_search == 2){
-        //         cout << "enter stdnum for search:\n";
-        //         cin >> std_num;
-        //         linear_search(start,"0",0,'0',std_num);
-        //     }else if(l_search == 3){
-        //         cout << "enter grade for search:\n";
-        //         cin >> moadel;
-        //         cout << "choose grade range:\n"
-        //         << ">\n"
-        //         << "<\n"
-        //         << "=\n";
-        //         cin >> amal;
-        //         linear_search(start,"0",moadel,amal,0);
-        //     }else if(l_search == 4){
-        //         cout << "enter name for search:\n";
-        //         cin.ignore();
-        //         getline(cin,name);
-        //         cout << "enter stdnum for search:\n";
-        //         cin >> std_num;
-        //         cout << "enter grade for search:\n";
-        //         cin >> moadel;
-        //         cout << "choose grade range:\n"
-        //         << ">\n"
-        //         << "<\n"
-        //         << "=\n";
-        //         cin >> amal;
-        //         linear_search(start , name , moadel , amal , std_num);
-        //     }else{
-        //         cout << "wrong choice!";
-        //     }
-
-            
-        // }else if(gozine == 5){
-        //     int sort_choice;
-        //     cout << "choose sort method:\n"
-        //     <<"1.by name\n"
-        //     <<"2.by grade\n"
-        //     <<"3.by std num\n";
-        //     cin >> sort_choice;
-        //     if(sort_choice == 1){
-        //         str_sort(&start);
-        //     }else if(sort_choice == 2){
-        //         grade_sort(&start);
-
-        //     }else if(sort_choice == 3){
-        //         stdnum_sort(&start);
-        //     }else{
-        //         cout << "wrong choice";
-        //     }
-        //     cout << "your linked list is:\n";
-        //     display_students(start);
-        // }else if(gozine == 6){
-        //     int search_choice;
-        //     cout << "choose binary search method:\n"
-        //     <<"1.by name\n"
-        //     <<"2.by grade\n"
-        //     <<"3.by std num\n";
-        //     cin >> search_choice;
-        //     if(search_choice == 1){
-        //         //name
-        //         cout << "enter name:\n";
-        //         cin.ignore();
-        //         getline(cin,name);
-        //         cout << "index = "
-        //         << binary_search(start , name);
-        //     }else if(search_choice == 2){
-        //         //grade
-        //         cout << "enter grade:\n";
-        //         cin >> moadel;
-        //         cout << "index = "
-        //         << binary_search(start , moadel);
-        //     }else if(search_choice == 3){
-        //         //std num
-        //         cout << "enter std number:\n";
-        //         cin >> std_num;
-        //         cout << "index = "
-        //         << binary_search(start , std_num);
-        //     }   
-            
-        // }else{
-        //     cout << "wrong choice!\n";
-        // }
 
 
 
